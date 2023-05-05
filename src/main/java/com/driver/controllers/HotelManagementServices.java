@@ -17,13 +17,7 @@ public class HotelManagementServices {
 
     HotelManagementRepository hotelManagementRepository=new HotelManagementRepository();
 
-    public  boolean doesHotelExist(String hotelName) {
-        Optional<Hotel> hotel=hotelManagementRepository.getHotelByName(hotelName);
-        if(hotel.isEmpty())
-            return false;
-        else
-            return true;
-    }
+
 
     public boolean addHotel(Hotel hotel) {
 
@@ -103,6 +97,13 @@ public class HotelManagementServices {
             return true;
     }
 
+    public  boolean doesHotelExist(String hotelName) {
+        Optional<Hotel> hotel=hotelManagementRepository.getHotelByName(hotelName);
+        if(hotel.isEmpty())
+            return false;
+        else
+            return true;
+    }
 
     public boolean isRoomsAvailable(int noOfRooms, String hotelName) {
         Hotel hotel=hotelManagementRepository.getHotelByName(hotelName).get();
@@ -122,7 +123,9 @@ public class HotelManagementServices {
         boolean checkUser=doesUserExist(booking.getBookingAadharCard());
         boolean checkRooms=isRoomsAvailable(booking.getNoOfRooms(),booking.getHotelName());
         if(checkHotel==false||checkUser==false||checkRooms==false)
-           return -1;
+           return 1;
+
+        Hotel hotel=hotelManagementRepository.getHotelByName(booking.getHotelName()).get();
 
         String bookingId=generateBookingId();
         booking.setBookingId(bookingId);
@@ -130,7 +133,7 @@ public class HotelManagementServices {
         booking.setAmountToBePaid(amountToBePaid);
 
         hotelManagementRepository.bookARoom(booking);
-        Hotel hotel=hotelManagementRepository.getHotelByName(booking.getHotelName()).get();
+       // Hotel hotel=hotelManagementRepository.getHotelByName(booking.getHotelName()).get();
         hotel.setAvailableRooms(hotel.getAvailableRooms()-booking.getNoOfRooms());
         return amountToBePaid;
     }

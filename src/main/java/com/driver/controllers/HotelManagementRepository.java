@@ -102,6 +102,8 @@ public class HotelManagementRepository {
 
 
     public void bookARoom(Booking booking) {
+
+
         bookingMap.put(booking.getBookingId(),booking);//adding to bookings map
 
         List<String> bookingList=hotelBookingMap.get(booking.getHotelName());
