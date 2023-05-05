@@ -86,7 +86,7 @@ public class HotelManagementServices {
         Optional<Hotel> hotel=hotelManagementRepository.getHotelByName(booking.getHotelName());
         int pricePerNight=hotel.get().getPricePerNight();
 
-        return (pricePerNight*numberOfRooms);
+        return(int) (pricePerNight*numberOfRooms);
     }
 
     public boolean doesUserExist(int bookingAadharCard) {
@@ -133,12 +133,14 @@ public class HotelManagementServices {
 
         String bookingId=generateBookingId();
         booking.setBookingId(bookingId);
-        int amountToBePaid= amountToBePaid(booking);
+
+        int amountToBePaid= hotel.getPricePerNight()*booking.getNoOfRooms();
         booking.setAmountToBePaid(amountToBePaid);
 
         hotelManagementRepository.bookARoom(booking);
        // Hotel hotel=hotelManagementRepository.getHotelByName(booking.getHotelName()).get();
-        hotel.setAvailableRooms(hotel.getAvailableRooms()-booking.getNoOfRooms());
+
+
         return amountToBePaid;
     }
 

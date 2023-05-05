@@ -104,6 +104,10 @@ public class HotelManagementRepository {
     public void bookARoom(Booking booking) {
 
 
+        Hotel hotel=hotelMap.get(booking.getHotelName());
+        hotel.setAvailableRooms(hotel.getAvailableRooms()-booking.getNoOfRooms());
+        hotelMap.put(booking.getHotelName(), hotel);
+
         bookingMap.put(booking.getBookingId(),booking);//adding to bookings map
 
         List<String> bookingList=hotelBookingMap.get(booking.getHotelName());
@@ -113,6 +117,7 @@ public class HotelManagementRepository {
         List<String> allBookings=userBookingMap.get(booking.getBookingAadharCard());
         allBookings.add(booking.getBookingId());
         userBookingMap.put(booking.getBookingAadharCard(),allBookings);
+
 
 
 
