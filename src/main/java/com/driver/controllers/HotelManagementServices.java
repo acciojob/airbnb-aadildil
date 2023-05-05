@@ -122,8 +122,12 @@ public class HotelManagementServices {
         boolean checkHotel=doesHotelExist(hotelName);
         boolean checkUser=doesUserExist(booking.getBookingAadharCard());
         boolean checkRooms=isRoomsAvailable(booking.getNoOfRooms(),booking.getHotelName());
-        if(checkHotel==false||checkUser==false||checkRooms==false)
-           return 1;
+        if(checkHotel==false)
+            return 3;
+        if(checkUser==false)
+            return 2;
+        if(checkRooms==false)
+           return -1;
 
         Hotel hotel=hotelManagementRepository.getHotelByName(booking.getHotelName()).get();
 
