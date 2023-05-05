@@ -53,7 +53,7 @@ public class HotelManagementServices {
         //Incase there is not even a single hotel with atleast 1 facility return "" (empty string)
         Optional<String> hotelName=hotelManagementRepository.getHotelWithMostFacilities();
         if(hotelName.isEmpty())
-            return null;
+            return "";
         else
             return hotelName.get();
     }
