@@ -21,8 +21,7 @@ public class HotelManagementController {
 
 
 
-        if(hotel.getHotelName().equals("")||hotel.getHotelName().equals(null))
-            return "FAILURE";
+
         boolean added=hotelManagementServices.addHotel(hotel);
 
 
