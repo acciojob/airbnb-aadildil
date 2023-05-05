@@ -116,11 +116,13 @@ public class HotelManagementServices {
     }
 
     public int bookARoom(Booking booking) {
-        boolean checkHotel=doesHotelExist(booking.getHotelName());
-       boolean checkUser=doesUserExist(booking.getBookingAadharCard());
-       boolean checkRooms=isRoomsAvailable(booking.getNoOfRooms(),booking.getHotelName());
-        if(checkHotel==false||checkUser==false||checkRooms==false)
-           return -1;
+//        boolean checkHotel=doesHotelExist(booking.getHotelName());
+//        boolean checkUser=doesUserExist(booking.getBookingAadharCard());
+        boolean checkRooms=isRoomsAvailable(booking.getNoOfRooms(),booking.getHotelName());
+//        if(checkHotel==false||checkUser==false||checkRooms==false)
+//           return -1;
+        if(checkRooms==false)
+            return -1;
         String bookingId=generateBookingId();
         booking.setBookingId(bookingId);
         int amountToBePaid= amountToBePaid(booking);
