@@ -58,10 +58,7 @@ public class HotelManagementController {
 
 
 
-        String hotelName= booking.getHotelName();
-        String personName=booking.getBookingPersonName();
-        if(hotelName.equals(null)||hotelName.equals("")||personName.equals(null)||personName.equals(""))
-            return -1;
+
 
         return hotelManagementServices.bookARoom(booking);
         //The booking object coming from postman will have all the attributes except bookingId and amountToBePaid;//done

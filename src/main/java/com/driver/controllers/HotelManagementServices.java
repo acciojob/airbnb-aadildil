@@ -26,10 +26,7 @@ public class HotelManagementServices {
     }
 
     public boolean addHotel(Hotel hotel) {
-        //You need to add an hotel to the database-done
-        //incase the hotelName is null or the hotel Object is null return an empty a FAILURE-done
-        //Incase somebody is trying to add the duplicate hotelName return FAILURE-done
-        //in all other cases return SUCCESS after successfully adding the hotel to the hotelDb.-done
+
        String name=hotel.getHotelName();
        if(name==null)
            return false;
@@ -117,7 +114,11 @@ public class HotelManagementServices {
     }
 
     public int bookARoom(Booking booking) {
-        boolean checkHotel=doesHotelExist(booking.getHotelName());
+        String hotelName=booking.getHotelName();
+        String personName=booking.getBookingPersonName();
+        if(hotelName==null||personName==null)
+            return -1;
+        boolean checkHotel=doesHotelExist(hotelName);
         boolean checkUser=doesUserExist(booking.getBookingAadharCard());
         boolean checkRooms=isRoomsAvailable(booking.getNoOfRooms(),booking.getHotelName());
         if(checkHotel==false||checkUser==false||checkRooms==false)
