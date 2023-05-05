@@ -101,22 +101,28 @@ public class HotelManagementRepository {
     }
 
 
-    public void bookARoom(Booking booking) {
+    public int bookARoom(Booking booking) {
 
 
-        Hotel hotel=hotelMap.get(booking.getHotelName());
-        hotel.setAvailableRooms(hotel.getAvailableRooms()-booking.getNoOfRooms());
-        hotelMap.put(booking.getHotelName(), hotel);
+        if(!bookingMap.containsKey(booking.getBookingId())) {
 
-        bookingMap.put(booking.getBookingId(),booking);//adding to bookings map
+            Hotel hotel = hotelMap.get(booking.getHotelName());
+            hotel.setAvailableRooms(hotel.getAvailableRooms() - booking.getNoOfRooms());
+            hotelMap.put(booking.getHotelName(), hotel);
 
-        List<String> bookingList=hotelBookingMap.get(booking.getHotelName());
-        bookingList.add(booking.getBookingId());
-        hotelBookingMap.put(booking.getHotelName(),bookingList);//added to hotel-bookings
+            bookingMap.put(booking.getBookingId(), booking);//adding to bookings map
 
-        List<String> allBookings=userBookingMap.get(booking.getBookingAadharCard());
-        allBookings.add(booking.getBookingId());
-        userBookingMap.put(booking.getBookingAadharCard(),allBookings);
+            List<String> bookingList = hotelBookingMap.get(booking.getHotelName());
+            bookingList.add(booking.getBookingId());
+            hotelBookingMap.put(booking.getHotelName(), bookingList);//added to hotel-bookings
+
+            List<String> allBookings = userBookingMap.get(booking.getBookingAadharCard());
+            allBookings.add(booking.getBookingId());
+            userBookingMap.put(booking.getBookingAadharCard(), allBookings);
+            return booking.getAmountToBePaid();
+        }
+        else
+            return -1;
 
 
 

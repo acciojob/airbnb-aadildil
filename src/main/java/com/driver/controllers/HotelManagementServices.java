@@ -34,6 +34,7 @@ public class HotelManagementServices {
     public  Integer addUser(User user) {
         //You need to add a User Object to the database
         //Assume that user will always be a valid user and return the aadharCardNo of the user
+
         Optional<User> userOptional=hotelManagementRepository.addUser(user);
 
         return userOptional.get().getaadharCardNo();
@@ -117,7 +118,7 @@ public class HotelManagementServices {
     public int bookARoom(Booking booking) {
         String hotelName=booking.getHotelName();
         String personName=booking.getBookingPersonName();
-        if(hotelName==null||personName==null)
+        if(hotelName==null||personName==null||hotelName.equals(""))
             return -1;
         boolean checkHotel=doesHotelExist(hotelName);
         boolean checkUser=doesUserExist(booking.getBookingAadharCard());
@@ -137,11 +138,11 @@ public class HotelManagementServices {
         int amountToBePaid= hotel.getPricePerNight()*booking.getNoOfRooms();
         booking.setAmountToBePaid(amountToBePaid);
 
-        hotelManagementRepository.bookARoom(booking);
+        return hotelManagementRepository.bookARoom(booking);
        // Hotel hotel=hotelManagementRepository.getHotelByName(booking.getHotelName()).get();
 
 
-        return amountToBePaid;
+
     }
 
 
