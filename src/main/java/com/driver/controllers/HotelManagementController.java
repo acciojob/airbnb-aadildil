@@ -19,6 +19,8 @@ public class HotelManagementController {
     public String addHotel(@RequestBody Hotel hotel){
 
 
+        if(hotel.getHotelName().equals("")||hotel.getHotelName().equals(null))
+            return "FAILURE";
         boolean added=hotelManagementServices.addHotel(hotel);
 
 

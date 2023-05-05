@@ -68,7 +68,7 @@ public class HotelManagementRepository {
 
             }
         }
-        if(hotelName.equals(""))
+        if(hotelName.equals("")||facilityCount==0)
             return Optional.empty();
         else
             return Optional.of(hotelName);
