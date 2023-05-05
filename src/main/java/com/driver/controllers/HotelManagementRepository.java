@@ -24,6 +24,8 @@ public class HotelManagementRepository {
 
 
     public  Optional<Hotel> getHotelByName(String hotelName) {
+        if(hotelName==null)
+            return Optional.empty();
         if(hotelMap.containsKey(hotelName))
             return Optional.of(hotelMap.get(hotelName));
         else

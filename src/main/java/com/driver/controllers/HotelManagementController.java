@@ -7,6 +7,7 @@ import com.driver.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+
 import java.util.*;
 
 @RestController
@@ -17,6 +18,7 @@ public class HotelManagementController {
     HotelManagementServices hotelManagementServices=new HotelManagementServices();
     @PostMapping("/add-hotel")
     public String addHotel(@RequestBody Hotel hotel){
+
 
 
         if(hotel.getHotelName().equals("")||hotel.getHotelName().equals(null))

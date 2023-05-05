@@ -30,7 +30,7 @@ public class HotelManagementServices {
         //incase the hotelName is null or the hotel Object is null return an empty a FAILURE-done
         //Incase somebody is trying to add the duplicate hotelName return FAILURE-done
         //in all other cases return SUCCESS after successfully adding the hotel to the hotelDb.-done
-        if(hotel.equals(null)||hotel.getHotelName().equals(null)||hotel.getHotelName().equals(""))
+        if(hotel.getHotelName()==null||hotel.getHotelName().equals(""))
             return false;
         Optional<Hotel> hotel1=hotelManagementRepository.getHotelByName(hotel.getHotelName());
         if(hotel1.isPresent())
